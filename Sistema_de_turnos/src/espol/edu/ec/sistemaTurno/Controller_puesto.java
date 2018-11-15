@@ -14,6 +14,7 @@ import java.util.Queue;
 import java.util.ResourceBundle;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.paint.Color;
@@ -33,6 +34,9 @@ public class Controller_puesto implements Initializable {
     @FXML
     Label mensaje,cantPuestos;
     Puesto puesto;
+    @FXML 
+    ComboBox cantidadBox;
+    
     //LinkedList<Puesto> puestoMedicos;
     int contador =0;
     @Override
@@ -41,7 +45,7 @@ public class Controller_puesto implements Initializable {
         //puesto = new Puesto();
         //puestoMedicos=new LinkedList<>();
         cantPuestos.setText(String.valueOf(Controller_menu.PUESTO_MEDICO.size()));
-        
+        cantidadBox.getItems().addAll(Controller_menu.PUESTO_MEDICO);
     }    
 
     public Controller_puesto() {
@@ -56,6 +60,28 @@ public class Controller_puesto implements Initializable {
             Controller_menu.PUESTO_MEDICO.addLast(new Puesto(new Medico(cedula.getText(),nombre.getText(),apellido.getText(),profesion.getText())));
             contador++;
             this.cantPuestos.setText(String.valueOf(Controller_menu.PUESTO_MEDICO.size()));
+            cantidadBox.getItems().clear();
+            cantidadBox.getItems().addAll(Controller_menu.PUESTO_MEDICO);
             mensaje.setText("Registro completo");
+    }
+    
+    @FXML
+    public void crearPuesto(){
+        Puesto puesto = new Puesto();
+        Controller_menu.PUESTO_MEDICO.add(puesto);
+        cantPuestos.setText(String.valueOf(Controller_menu.PUESTO_MEDICO.size()));
+        cantidadBox.getItems().clear();
+
+    }
+    public void borrarPuesto(int numero){
+        Controller_menu.PUESTO_MEDICO.remove(numero);
+        cantPuestos.setText(String.valueOf(Controller_menu.PUESTO_MEDICO.size()-1));
+
+    }
+    public void setMedico(){
+        Medico medic = new Medico(cedula.getText(), nombre.getText(), apellido.getText(), profesion.getText());
+        Controller_menu.PUESTO_MEDICO.set(2, new Puesto(medic));
+        cantidadBox.getItems().clear();
+        cantidadBox.getItems().addAll(Controller_menu.PUESTO_MEDICO);
     }
 }

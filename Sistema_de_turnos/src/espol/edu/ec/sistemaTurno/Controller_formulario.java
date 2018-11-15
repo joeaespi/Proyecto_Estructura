@@ -60,7 +60,7 @@ public class Controller_formulario implements Initializable {
     
     @FXML
     public void buttonAceptar() throws IOException, InterruptedException{
-        if(nombres.getText().equals("")||apellidos.getText().equals("")||genero.getText().equals("")||sintomas.getText().equals("")||edad.getText().equals("")){
+        if(nombres.getText().equals("")||apellidos.getText().equals("")||genero.getText().equals("")||edad.getText().equals("")){
             mensaje.setTextFill(Color.BLUE);
             mensaje.setText("Campos Obligatorios!!");
             return;
@@ -103,9 +103,11 @@ public class Controller_formulario implements Initializable {
         nombres.setText("");
         apellidos.setText("");
         genero.setText("");
-        sintomas.setText("");
         edad.setText("");
         mensaje.setText("");
+        Controller_menu.TURNO.forEach((t1) -> {
+            System.out.println(t1);
+        });
     }
     
     

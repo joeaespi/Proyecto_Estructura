@@ -2,5 +2,4 @@ Christian,Gonzales,M,20,resfrio
 Pedro,Ramirez,M,12,fiebre
 Juancho,Piedad,Masculino,27,vomito
 Maria,Segarra,Femenino,15,vómito
-12312,213123,3123,312,3123
-123,123,213,213,23
+Josee,jese,Masculino,21,vómito

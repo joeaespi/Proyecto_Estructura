@@ -13,19 +13,17 @@ import java.util.Queue;
  * @author Christian Guerrero
  */
 public class Puesto {
-    private Medico medico;
     private String nombre, cedula;
     private Paciente paciente;
     private Turno  turno;
     private int contadorPacientes;
+    private static int CONTADORPACIENTE =0;
     public Puesto(){
-    contadorPacientes=0;
     }
     
     public Puesto(Medico medico) {
         this.nombre = medico.getNombre();
         this.cedula=medico.getCedula();
-        contadorPacientes++;
     }
 //    public Puesto agregarPuesto(Medico medico){
 //        
@@ -35,14 +33,7 @@ public class Puesto {
         return puesto;
     }
 
-    public Medico getMedico() {
-        return medico;
-    }
-
-    public void setMedico(Medico medico) {
-        this.medico = medico;
-    }
-
+  
     public Paciente getPaciente() {
         return paciente;
     }
@@ -53,7 +44,7 @@ public class Puesto {
 
     @Override
     public String toString() {
-        return "Puesto{" + "medico=" + medico + ", nombre=" + nombre + ", cedula=" + cedula + ", turno=" + turno + ", contadorPacientes=" + contadorPacientes + '}';
+        return "Puesto{" +  ", nombre=" + nombre + ", cedula=" + cedula + ", turno=" + turno + ", contadorPacientes=" + contadorPacientes + '}';
     }
     
     

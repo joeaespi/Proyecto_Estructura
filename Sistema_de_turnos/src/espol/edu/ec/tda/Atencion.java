@@ -19,12 +19,21 @@ public enum Atencion {
     */
     Alta_medio(1, "B"),
     /**
-    *Tipo de atencion con prioridad baja
+    *Tipo de atencion
     */
     Alta_normal(2, "C"),
+    /**
+    *Tipo de atencion
+    */
     Bajo(3, "D"),
+    /**
+    *Tipo de atencion
+    */
     normal(4, "E"),
-    Alta_no(5, "F");
+    /**
+    *Tipo de atencion
+    */
+    muy_baja(5, "F");
 
     
     private final int prioridad;

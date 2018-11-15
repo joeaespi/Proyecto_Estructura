@@ -41,10 +41,15 @@ public class Controller_menu implements Initializable {
     public Stage stageRegistrar,stagePuesto,stagePaciente,stageMenu;
     static final PriorityQueue<Turno> TURNO = new PriorityQueue<>((Turno t1, Turno t2)-> t1.getTipo()-t2.getTipo());
     static final LinkedList<Puesto> PUESTO_MEDICO  = new LinkedList<>();
-
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO  colaPaciente = new PriorityQueue<>((Cliente c1, Cliente c2)->(c1.getNivelPrioridad()-c2.getNivelPrioridad()));  
+            PUESTO_MEDICO.addLast(new Puesto(new Medico("09911145","Christian","Guerrero","Cirujano")));
+            PUESTO_MEDICO.addLast(new Puesto(new Medico("09922256","Joselin","Garcia","Pediatra")));
+            PUESTO_MEDICO.addLast(new Puesto(new Medico("09933367","Javier","Silva","Odontologo")));
+            PUESTO_MEDICO.addLast(new Puesto(new Medico("09933389","Raul","Calle","General")));
+
+    
     }
     @FXML
     public void registrarPaciente() throws IOException{
