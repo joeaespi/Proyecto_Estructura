@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.StackPane?>
+
+<AnchorPane id="AnchorPane" prefHeight="700.0" prefWidth="1024.0" style="-fx-background-color: #050100;" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="espol.edu.ec.sistemaTurno.Controller_turnos">
+   <children>
+      <StackPane layoutX="28.0" layoutY="40.0" prefHeight="510.0" prefWidth="968.0" style="-fx-background-color: #E9E3E2;" />
+   </children>
+</AnchorPane>
