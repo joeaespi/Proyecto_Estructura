@@ -6,6 +6,7 @@
 package espol.edu.ec.ListaCircularDoble;
 
 import java.util.Iterator;
+import java.util.ListIterator;
 
 /**
  *
@@ -392,6 +393,91 @@ public class ListaCircularDoble<E> implements List<E>, Iterable<E> {
         };
         return it;
     }
+    
+    public ListIterator<E> listIterator(int index){
+        ListIterator<E> it=new ListIterator<E>(){
+            private Node<E> getNode(int index){
+                if(index==0)
+                    return last.getNext();
+                else if(index==efectivo-1)
+                    return last;
+                
+                else{
+                    int con=1;   
+                    for (Node<E> nodo=last.getNext().getNext();nodo!=last; nodo=nodo.getNext()){
+                    if(con==index)
+                        return nodo;
+                    con++;
+                  } 
+               }
+                return null;  
+            }
+            
+            private Node<E> p=getNode(index);
+            int currentIndex=index;
+           
+            
+            @Override
+            public boolean hasNext() {
+                //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+                return p!=null;
+            }
+
+            @Override
+            public E next() {
+                E data=p.getData();
+                p=p.getNext();
+                currentIndex++;
+                return data;  
+            }
+
+            @Override
+            public boolean hasPrevious() {
+               //return current!=null;
+                return p!=null;
+                
+            }
+
+            @Override
+            public E previous() {
+                E data=p.getData();
+                p=p.getPrevious();
+                currentIndex--;
+                return data;
+            }
+
+            @Override
+            public int nextIndex() {
+                throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+            }
+
+            @Override
+            public int previousIndex() {
+                throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+            }
+
+            @Override
+            public void remove() {
+                throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+            }
+
+            @Override
+            public void set(E e) {
+                throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+            }
+
+            @Override
+            public void add(E e) {
+                throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+            }
+            
+        };
+                
+    return it;
+    }
+    
+    
+    
     
     }
     
