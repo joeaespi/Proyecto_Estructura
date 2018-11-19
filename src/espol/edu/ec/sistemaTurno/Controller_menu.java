@@ -47,7 +47,7 @@ public class Controller_menu implements Initializable {
         // TODO  colaPaciente = new PriorityQueue<>((Cliente c1, Cliente c2)->(c1.getNivelPrioridad()-c2.getNivelPrioridad()));  
     }
     @FXML
-    public void registrarPaciente() throws IOException{
+    public  void registrarPaciente() throws IOException{
         stageRegistrar = new Stage();
         stageRegistrar.setTitle("Registro Pacientes");
         rootPaciente =FXMLLoader.load(getClass().getResource("viewFormulario.fxml"));

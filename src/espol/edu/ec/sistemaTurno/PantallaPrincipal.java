@@ -7,24 +7,38 @@ package espol.edu.ec.sistemaTurno;
 
 
 
+
+import espol.edu.ec.tda.Puesto;
+import espol.edu.ec.tda.Turno;
 import java.io.File;
+import java.io.IOException;
 import java.time.LocalDateTime;
+import java.util.LinkedList;
 
 import java.util.ListIterator;
+import java.util.PriorityQueue;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javafx.application.Platform;
+import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
+import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
 import javafx.scene.media.MediaView;
+import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
+import javafx.stage.Stage;
 
 /**
  *
@@ -35,6 +49,15 @@ public class PantallaPrincipal {
     private Label tiempo;
     private ListIterator<String> it;
     private MediaView reproductor;
+    @FXML
+    private AnchorPane rootPane;
+    @FXML
+    private Parent rootPaciente, rootPuesto,rootAtencion;
+    @FXML
+    public Stage stageRegistrar,stagePuesto,stagePaciente,stageMenu;
+    static final PriorityQueue<Turno> TURNO = new PriorityQueue<>((Turno t1, Turno t2)-> t1.getTipo()-t2.getTipo());
+    static final LinkedList<Puesto> PUESTO_MEDICO  = new LinkedList<>();
+    
     public PantallaPrincipal() throws InterruptedException {
         root=new BorderPane();
         root.setLeft(crearIzquierda());
@@ -46,7 +69,7 @@ public class PantallaPrincipal {
         
     }
     
-    public VBox crearIzquierda(){
+    public Pane crearIzquierda(){
         VBox video=new VBox();
         video.setStyle("-fx-background-color:#00FF7F");
         video.setAlignment(Pos.CENTER);
@@ -90,11 +113,12 @@ public class PantallaPrincipal {
         return video;
     }
 
-    public BorderPane getRoot() {
+    public Pane getRoot() {
         return root;
     }
     
-    public HBox crearBajo(){
+    public Pane crearBajo(){
+        VBox abajo = new VBox();
         HBox botones=new HBox();
         botones.setAlignment(Pos.CENTER);
         Button crearPaciente=new Button("Crear Paciente");
@@ -103,11 +127,50 @@ public class PantallaPrincipal {
         botones.setPadding(new Insets(5,5,5,5));
         Button atenderTurno=new Button("Atender turno");
         botones.getChildren().addAll(crearPaciente,puestoMedico,atenderTurno);
-        return botones;
+        abajo.getChildren().add(botones);
+        Label mensaje = new Label("Horario de atención de Lunes a Viernes de 10 a 18 Hs/ Sabado y Domingos"
+                + "de 10 a 14 hs");
+        mensaje.setStyle("-fx-background-color:#66CDAA");
+        mensaje.setTextFill(Color.web("#FFFFFF"));
+        abajo.getChildren().add(mensaje);
+        crearPaciente.setOnAction((e)-> {
+            try {
+                stageRegistrar = new Stage();
+                stageRegistrar.setTitle("Registro Pacientes");
+                rootPaciente =FXMLLoader.load(getClass().getResource("viewFormulario.fxml"));
+                stageRegistrar.setScene(new Scene(rootPaciente));
+                stageRegistrar.show();
+            } catch (IOException ex) {
+                Logger.getLogger(PantallaPrincipal.class.getName()).log(Level.SEVERE, null, ex);
+            }
+});
+        puestoMedico.setOnAction((e)->{
+            try {
+                stagePuesto = new Stage();
+                stagePuesto.setTitle("Registrar Puesto");
+                rootPuesto =FXMLLoader.load(getClass().getResource("viewPuesto.fxml"));
+                stagePuesto.setScene(new Scene(rootPuesto));
+                stagePuesto.show();
+            } catch (IOException ex) {
+                Logger.getLogger(PantallaPrincipal.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        });
+        atenderTurno.setOnAction((e)->{
+            try {
+                stagePaciente=new Stage();
+                stagePaciente.setTitle("Atencion");
+                rootAtencion =FXMLLoader.load(getClass().getResource("viewAtencion.fxml"));
+                stagePaciente.setScene(new Scene(rootAtencion));
+                stagePaciente.show();
+            } catch (IOException ex) {
+                Logger.getLogger(PantallaPrincipal.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        });
+        return abajo; 
     }
     
     
-    public HBox crearArriba(){
+    public Pane crearArriba(){
         HBox arriba=new HBox();
         arriba.setPadding(new Insets(5,5,5,5));
         arriba.setAlignment(Pos.CENTER_RIGHT);
@@ -120,7 +183,7 @@ public class PantallaPrincipal {
         
     }
     
-    public HBox crearDerecha(){
+    public Pane crearDerecha(){
         HBox panel=new HBox();
         panel.setSpacing(5);
         panel.setPadding(new Insets(5,5,5,5));
