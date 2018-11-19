@@ -3,8 +3,10 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package espol.edu.ec.ListaCircularDoble;
+package espol.edu.ec.sistemaTurno;
 
+import espol.edu.ec.ListaCircularDoble.List;
+import espol.edu.ec.ListaCircularDoble.Node;
 import java.util.Iterator;
 import java.util.ListIterator;
 
