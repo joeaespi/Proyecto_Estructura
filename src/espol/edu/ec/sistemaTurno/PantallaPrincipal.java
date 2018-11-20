@@ -71,6 +71,7 @@ public class PantallaPrincipal {
     
     public Pane crearIzquierda(){
         VBox video=new VBox();
+      
         video.setStyle("-fx-background-color:#00FF7F");
         video.setAlignment(Pos.CENTER);
         video.setPadding(new Insets(5,5,5,5));
@@ -119,6 +120,8 @@ public class PantallaPrincipal {
     
     public Pane crearBajo(){
         VBox abajo = new VBox();
+        abajo.setAlignment(Pos.CENTER);
+        abajo.setPadding(new Insets(5,5,5,5));
         HBox botones=new HBox();
         botones.setAlignment(Pos.CENTER);
         Button crearPaciente=new Button("Crear Paciente");
@@ -131,6 +134,7 @@ public class PantallaPrincipal {
         Label mensaje = new Label("Horario de atención de Lunes a Viernes de 10 a 18 Hs/ Sabado y Domingos"
                 + "de 10 a 14 hs");
         mensaje.setStyle("-fx-background-color:#66CDAA");
+        mensaje.setFont(new Font("Arial Black",12));
         mensaje.setTextFill(Color.web("#FFFFFF"));
         abajo.getChildren().add(mensaje);
         crearPaciente.setOnAction((e)-> {
