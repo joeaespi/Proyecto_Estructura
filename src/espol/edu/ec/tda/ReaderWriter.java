@@ -54,10 +54,10 @@ public class ReaderWriter {
         String filename ="src/espol/edu/ec/recursos/files/formulario.txt";
         LinkedList<Paciente> pacientes = new LinkedList<>();
         try(BufferedReader br = new BufferedReader(new FileReader(filename))){
-            String linea= null;
+            String linea;
             while((linea=br.readLine())!=null){
                 String[] data =linea.split(",");
-                pacientes.addLast(new Paciente(data[0],data[1],data[2],Integer.parseInt(data[3]),data[4],leerSintomas(data[4])));
+                pacientes.add(new Paciente(data[0],data[1],data[2],Integer.parseInt(data[3]),data[4],leerSintomas(data[4])));
             }
         } catch (IOException ex) {
             Logger.getLogger(Paciente.class.getName()).log(Level.SEVERE, null, ex);

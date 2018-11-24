@@ -39,8 +39,8 @@ public class Controller_menu implements Initializable {
     private Parent rootPaciente, rootPuesto,rootAtencion;
     @FXML
     public Stage stageRegistrar,stagePuesto,stagePaciente,stageMenu;
-    static final PriorityQueue<Turno> TURNO = new PriorityQueue<>((Turno t1, Turno t2)-> t1.getTipo()-t2.getTipo());
-    static final LinkedList<Puesto> PUESTO_MEDICO  = new LinkedList<>();
+    //static final PriorityQueue<Turno> TURNO = new PriorityQueue<>((Turno t1, Turno t2)-> t1.getTipo()-t2.getTipo());
+    //static final LinkedList<Puesto> PUESTO_MEDICO  = new LinkedList<>();
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {

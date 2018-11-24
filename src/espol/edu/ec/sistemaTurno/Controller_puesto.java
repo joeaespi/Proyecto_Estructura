@@ -29,7 +29,7 @@ public class Controller_puesto implements Initializable {
      * Initializes the controller class.
      */
     @FXML
-    TextField cedula,nombre,apellido,profesion;
+    TextField cedula,nombre,apellido,profesion,genero,namePuesto;
     @FXML
     Label mensaje,cantPuestos;
     Puesto puesto;
@@ -40,7 +40,7 @@ public class Controller_puesto implements Initializable {
         // TODO
         //puesto = new Puesto();
         //puestoMedicos=new LinkedList<>();
-        cantPuestos.setText(String.valueOf(Controller_menu.PUESTO_MEDICO.size()));
+        cantPuestos.setText(String.valueOf(PantallaPrincipal.PUESTO_MEDICO.size()));
         
     }    
 
@@ -48,14 +48,32 @@ public class Controller_puesto implements Initializable {
     }
     @FXML
     public void registrarPuesto() throws InterruptedException{
-       if(cedula.getText().equals("")||nombre.getText().equals("")){
-            mensaje.setTextFill(Color.BLUE);
-            mensaje.setText("Campos Obligatorios!!");
-            return;
-        }
-            Controller_menu.PUESTO_MEDICO.addLast(new Puesto(new Medico(cedula.getText(),nombre.getText(),apellido.getText(),profesion.getText())));
+       if(cedula.getText().isEmpty()||nombre.getText().isEmpty() || apellido.getText().isEmpty()|| profesion.getText().isEmpty()|| namePuesto.getText().isEmpty()){
+            mensaje.setTextFill(Color.RED);
+            mensaje.setText("Existen campos en blanco!!!");
+            //return;
+        }else{
+           PantallaPrincipal.PUESTO_MEDICO.add(new Puesto(new Medico(cedula.getText(),nombre.getText(),apellido.getText(),profesion.getText()),namePuesto.getText()));
             contador++;
-            this.cantPuestos.setText(String.valueOf(Controller_menu.PUESTO_MEDICO.size()));
+            this.cantPuestos.setText(String.valueOf(PantallaPrincipal.PUESTO_MEDICO.size()));
+            mensaje.setTextFill(Color.GREEN);
             mensaje.setText("Registro completo");
+       }
+            
     }
+    @FXML
+    public void borrarCampos(){
+        cedula.setText("");
+        apellido.setText("");
+        nombre.setText("");
+        profesion.setText("");
+        genero.setText("");
+        mensaje.setText("");
+        namePuesto.setText("");
+    }
+    
+    
+    
+    
+    
 }

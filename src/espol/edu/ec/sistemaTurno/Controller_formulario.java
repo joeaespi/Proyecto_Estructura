@@ -76,7 +76,7 @@ public class Controller_formulario implements Initializable {
             mensaje.setTextFill(Color.BLACK);
             mensaje.setText("Registrado...");
             turnos = new Turno(String.valueOf(num++), new Paciente(nombres.getText(),apellidos.getText(), genero.getText(),(String)combSintomas.getValue()));
-            Controller_menu.TURNO.offer(turnos);
+            PantallaPrincipal.TURNO.offer(turnos);
         }catch(IOException e){
             System.out.println(e.getMessage());
         }finally{

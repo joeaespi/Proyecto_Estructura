@@ -48,14 +48,14 @@ public class Sistema extends Application {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        System.out.println(Controller_menu.TURNO.size());
+        /*System.out.println(Controller_menu.TURNO.size());
         System.out.println(Controller_menu.PUESTO_MEDICO.size());
         launch(args);
         Controller_menu.TURNO.forEach((t1) -> {
             System.out.println(t1);
         });
         System.out.println(Controller_menu.PUESTO_MEDICO.size());
-
+*/
 
         
     }

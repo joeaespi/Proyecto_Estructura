@@ -6,6 +6,7 @@
 package espol.edu.ec.tda;
 
 import java.util.LinkedList;
+import java.util.List;
 import java.util.Queue;
 
 /**
@@ -14,25 +15,31 @@ import java.util.Queue;
  */
 public class Puesto {
     private Medico medico;
+    private String nombrePuesto;
     private String nombre, cedula;
-    private Paciente paciente;
+    private List<Paciente> pacientes;
     private Turno  turno;
     private int contadorPacientes;
-    public Puesto(){
-    contadorPacientes=0;
-    }
     
-    public Puesto(Medico medico) {
+    public Puesto(Medico medico,String nombrePuesto) {
         this.nombre = medico.getNombre();
         this.cedula=medico.getCedula();
-        contadorPacientes++;
+        this.nombrePuesto=nombrePuesto;
     }
 //    public Puesto agregarPuesto(Medico medico){
 //        
 //    }
-    public Puesto asginarPuesto(Medico medico){
+    /*public Puesto asginarPuesto(Medico medico,String nombrePuesto){
         Puesto puesto = new Puesto(medico);
         return puesto;
+    }*/
+
+    public String getNombrePuesto() {
+        return nombrePuesto;
+    }
+
+    public void setNombrePuesto(String nombrePuesto) {
+        this.nombrePuesto = nombrePuesto;
     }
 
     public Medico getMedico() {
@@ -43,12 +50,8 @@ public class Puesto {
         this.medico = medico;
     }
 
-    public Paciente getPaciente() {
-        return paciente;
-    }
-
-    public void setPaciente(Paciente paciente) {
-        this.paciente = paciente;
+    public List<Paciente> getPacientes() {
+        return pacientes;
     }
 
     @Override

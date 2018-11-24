@@ -8,6 +8,7 @@ package espol.edu.ec.sistemaTurno;
 
 
 
+import espol.edu.ec.tda.Medico;
 import espol.edu.ec.tda.Puesto;
 import espol.edu.ec.tda.Turno;
 import java.io.File;
@@ -46,19 +47,23 @@ import javafx.stage.Stage;
  */
 public class PantallaPrincipal {
     private final BorderPane root;
-    private Label tiempo;
+    private Label tiempo,mensaje;
     private ListIterator<String> it;
     private MediaView reproductor;
     @FXML
     private AnchorPane rootPane;
     @FXML
-    private Parent rootPaciente, rootPuesto,rootAtencion;
+    private FXMLLoader rootPaciente, rootPuesto,rootAtencion;
     @FXML
-    public Stage stageRegistrar,stagePuesto,stagePaciente,stageMenu;
+    static Stage stageRegistrar,stagePuesto,stagePaciente,stageMenu;
     static final PriorityQueue<Turno> TURNO = new PriorityQueue<>((Turno t1, Turno t2)-> t1.getTipo()-t2.getTipo());
-    static final LinkedList<Puesto> PUESTO_MEDICO  = new LinkedList<>();
-    
+    static final LinkedList<Puesto> PUESTO_MEDICO = new LinkedList<>();
+    static Label mostrarTurno;
+    static Label mostrarPuesto;
     public PantallaPrincipal() throws InterruptedException {
+        TURNO.addAll(Turno.asignarTurnos());
+        Puesto p=new Puesto(new Medico("0965487568","Julian","Perez","Medicina General","Masculino",50),"A01");
+        PUESTO_MEDICO.add(p);
         root=new BorderPane();
         root.setLeft(crearIzquierda());
         root.setBottom(crearBajo());
@@ -129,7 +134,8 @@ public class PantallaPrincipal {
         botones.setSpacing(30);
         botones.setPadding(new Insets(5,5,5,5));
         Button atenderTurno=new Button("Atender turno");
-        botones.getChildren().addAll(crearPaciente,puestoMedico,atenderTurno);
+        mensaje=new Label("");
+        botones.getChildren().addAll(crearPaciente,puestoMedico,atenderTurno,mensaje);
         abajo.getChildren().add(botones);
         Label mensaje = new Label("Horario de atención de Lunes a Viernes de 10 a 18 Hs/ Sabado y Domingos"
                 + "de 10 a 14 hs");
@@ -141,8 +147,8 @@ public class PantallaPrincipal {
             try {
                 stageRegistrar = new Stage();
                 stageRegistrar.setTitle("Registro Pacientes");
-                rootPaciente =FXMLLoader.load(getClass().getResource("viewFormulario.fxml"));
-                stageRegistrar.setScene(new Scene(rootPaciente));
+                rootPaciente =new FXMLLoader(this.getClass().getResource("viewFormulario.fxml"));
+                stageRegistrar.setScene(new Scene(rootPaciente.load()));
                 stageRegistrar.show();
             } catch (IOException ex) {
                 Logger.getLogger(PantallaPrincipal.class.getName()).log(Level.SEVERE, null, ex);
@@ -152,8 +158,8 @@ public class PantallaPrincipal {
             try {
                 stagePuesto = new Stage();
                 stagePuesto.setTitle("Registrar Puesto");
-                rootPuesto =FXMLLoader.load(getClass().getResource("viewPuesto.fxml"));
-                stagePuesto.setScene(new Scene(rootPuesto));
+                rootPuesto=new FXMLLoader(this.getClass().getResource("viewPuesto.fxml"));
+                stagePuesto.setScene(new Scene(rootPuesto.load()));
                 stagePuesto.show();
             } catch (IOException ex) {
                 Logger.getLogger(PantallaPrincipal.class.getName()).log(Level.SEVERE, null, ex);
@@ -163,8 +169,8 @@ public class PantallaPrincipal {
             try {
                 stagePaciente=new Stage();
                 stagePaciente.setTitle("Atencion");
-                rootAtencion =FXMLLoader.load(getClass().getResource("viewAtencion.fxml"));
-                stagePaciente.setScene(new Scene(rootAtencion));
+                rootAtencion =new FXMLLoader(this.getClass().getResource("viewAtencion.fxml"));
+                stagePaciente.setScene(new Scene(rootAtencion.load()));
                 stagePaciente.show();
             } catch (IOException ex) {
                 Logger.getLogger(PantallaPrincipal.class.getName()).log(Level.SEVERE, null, ex);
@@ -206,9 +212,23 @@ public class PantallaPrincipal {
         titulo2.setAlignment(Pos.CENTER);
         titulo2.setStyle("-fx-background-color:#87CEFA");
         
+        mostrarTurno=new Label("");
+        if (!TURNO.isEmpty()){
+            mostrarTurno.setText(TURNO.peek().getNumero());
+        }else{
+            Platform.runLater(()->{
+                mensaje.setText("TurnosAtendidos");
+            });
+            
+            
+        }
+        
+        
         Label nombreturno=new Label("Turno");
         nombreturno.setFont(new Font("Arial Black",20));
         titulo1.getChildren().add(nombreturno);
+        titulo2.getChildren().add(mostrarTurno);
+        
         
         
         turno.getChildren().addAll(titulo1,titulo2);
@@ -231,6 +251,13 @@ public class PantallaPrincipal {
         
         Label nombrepuesto=new Label("Puesto");
         nombrepuesto.setFont(new Font("Arial Black",20));
+        
+        mostrarPuesto=new Label("");
+        Puesto p=PUESTO_MEDICO.peek();
+        mostrarPuesto.setText(p.getNombrePuesto());
+        
+        puesto2.getChildren().add(mostrarPuesto);
+        
         puesto1.getChildren().add(nombrepuesto);
         puesto.getChildren().addAll(puesto1,puesto2);
         

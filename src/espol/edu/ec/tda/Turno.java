@@ -5,6 +5,9 @@
  */
 package espol.edu.ec.tda;
 
+import java.util.LinkedList;
+import java.util.List;
+
 /**
  *
  * @author Christian Guerrero
@@ -66,6 +69,19 @@ public class Turno {
     @Override
     public String toString() {
         return "Turno{" + "paciente=" + paciente  +", numero=" + numero + ", estado=" + estado + ", tipo=" + tipo + '}';
+    }
+    
+    
+    //leer archivo y asignar turnos
+    public static List<Turno> asignarTurnos(){
+        List<Turno> tmp=new LinkedList<>();
+        int tmp2=0;
+        for (Paciente p:ReaderWriter.leerCliente()){
+            Turno t=new Turno(String.valueOf(++tmp2),p);
+            tmp.add(t);
+            
+        }
+        return tmp;
     }
     
 }

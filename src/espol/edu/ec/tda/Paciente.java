@@ -23,6 +23,15 @@ public class Paciente {
     private String genero;
     private String sintoma;
     private int nivelPrioridad;
+    private String diagnostico;
+
+    public String getDiagnostico() {
+        return diagnostico;
+    }
+
+    public void setDiagnostico(String diagnostico) {
+        this.diagnostico = diagnostico;
+    }
 
     public Paciente(String nombre, String apellido,String genero,int edad, String sintoma,int nivel) {
         this.nombre = nombre;
