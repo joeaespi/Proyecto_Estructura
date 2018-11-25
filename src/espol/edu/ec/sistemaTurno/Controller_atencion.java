@@ -55,19 +55,22 @@ public class Controller_atencion implements Initializable {
             
             Turno t=PantallaPrincipal.TURNO.poll();
             t.getPaciente().setDiagnostico(diagnostico.getText());
-            PantallaPrincipal.mostrarTurno.setText(PantallaPrincipal.TURNO.peek().getNumero());
+            if (PantallaPrincipal.TURNO.isEmpty()){
+                PantallaPrincipal.mensaje.setText("TurnosAtendidos");
+                PantallaPrincipal.mostrarTurno.setText("---");
+                PantallaPrincipal.stagePaciente.close();
+                
+            }else{
+                PantallaPrincipal.mostrarTurno.setText(String.valueOf(PantallaPrincipal.TURNO.peek().getPaciente().getLetra()+PantallaPrincipal.TURNO.peek().getNumero()));
             PantallaPrincipal.mostrarPuesto.setText(PantallaPrincipal.PUESTO_MEDICO.peek().getNombrePuesto());
             Puesto p=PantallaPrincipal.PUESTO_MEDICO.poll();
            // 
             mensajeError.setTextFill(Color.GREEN);
             PantallaPrincipal.PUESTO_MEDICO.offer(p);
-
-            Platform.runLater(()->{
-                mensajeError.setText("Turno Atendido");
-            });
             
-            Thread.sleep(2000);
             PantallaPrincipal.stagePaciente.close();
+            }
+            
         }
             
         

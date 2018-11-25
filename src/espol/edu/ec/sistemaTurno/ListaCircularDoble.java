@@ -18,7 +18,7 @@ public class ListaCircularDoble<E> implements List<E>, Iterable<E> {
     private Node<E> last;
     private int efectivo;
     
-    ListaCircularDoble(){
+    public ListaCircularDoble(){
         this.last=null;
         this.efectivo=0;
     }

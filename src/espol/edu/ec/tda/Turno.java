@@ -22,7 +22,7 @@ public class Turno {
     public Turno(String numero,Paciente paciente){
         this.numero=numero;
         this.paciente=paciente;
-        this.tipo=ReaderWriter.leerSintomas(paciente.getSintoma());
+        this.tipo=Integer.valueOf(ReaderWriter.leerSintomas(paciente.getSintoma()).get(0));
         estado = Estado.EN_ESPERA;
     }
 

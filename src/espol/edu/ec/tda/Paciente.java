@@ -24,6 +24,7 @@ public class Paciente {
     private String sintoma;
     private int nivelPrioridad;
     private String diagnostico;
+    private String letra;
 
     public String getDiagnostico() {
         return diagnostico;
@@ -33,13 +34,14 @@ public class Paciente {
         this.diagnostico = diagnostico;
     }
 
-    public Paciente(String nombre, String apellido,String genero,int edad, String sintoma,int nivel) {
+    public Paciente(String nombre, String apellido,String genero,int edad, String sintoma,int nivel,String letra) {
         this.nombre = nombre;
         this.apellido = apellido;
         this.edad = edad;
         this.genero = genero;
         this.sintoma = sintoma;
-        this.nivelPrioridad =nivel; 
+        this.nivelPrioridad =nivel;
+        this.letra=letra;
     }
     public Paciente(String nombre,String apellido,String genero,String sintoma){
         this.nombre=nombre;
@@ -95,6 +97,16 @@ public class Paciente {
     public void setSintoma(String sintoma) {
         this.sintoma = sintoma;
     }
+
+    public String getLetra() {
+        return letra;
+    }
+
+    public void setLetra(String letra) {
+        this.letra = letra;
+    }
+    
+    
 
     @Override
     public String toString() {

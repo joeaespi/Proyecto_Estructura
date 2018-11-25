@@ -7,6 +7,7 @@ package espol.edu.ec.sistemaTurno;
 
 import espol.edu.ec.tda.Paciente;
 import espol.edu.ec.tda.ReaderWriter;
+import static espol.edu.ec.tda.ReaderWriter.leerSintomas;
 import espol.edu.ec.tda.Turno;
 import java.awt.event.ActionEvent;
 import java.io.BufferedReader;
@@ -17,6 +18,7 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.PriorityQueue;
 import java.util.ResourceBundle;
 import javafx.collections.FXCollections;
@@ -39,9 +41,9 @@ public class Controller_formulario implements Initializable {
      * Initializes the controller class.
      */
     @FXML
-    private TextField nombres,apellidos,genero,sintomas,edad;
+    private TextField nombres,apellidos,genero,edad;
     @FXML
-    private Label lnombre,lapellido,lgenero,lsintomas,mensaje;
+    private Label lnombre,lapellido,lgenero,mensaje;
     int num =0;
     ArrayList<String> arreglo= new ArrayList<>();
     @FXML
@@ -60,7 +62,7 @@ public class Controller_formulario implements Initializable {
     
     @FXML
     public void buttonAceptar() throws IOException, InterruptedException{
-        if(nombres.getText().equals("")||apellidos.getText().equals("")||genero.getText().equals("")||sintomas.getText().equals("")||edad.getText().equals("")){
+        if(nombres.getText().equals("")||apellidos.getText().equals("")||genero.getText().equals("")||edad.getText().equals("")){
             mensaje.setTextFill(Color.BLUE);
             mensaje.setText("Campos Obligatorios!!");
             return;
@@ -75,7 +77,8 @@ public class Controller_formulario implements Initializable {
             output.newLine();
             mensaje.setTextFill(Color.BLACK);
             mensaje.setText("Registrado...");
-            turnos = new Turno(String.valueOf(num++), new Paciente(nombres.getText(),apellidos.getText(), genero.getText(),(String)combSintomas.getValue()));
+            List<String> sint=leerSintomas(String.valueOf(combSintomas.getValue()));
+            turnos = new Turno(String.valueOf(++num), new Paciente(nombres.getText(),apellidos.getText(), genero.getText(),Integer.valueOf(edad.getText()),(String)combSintomas.getValue(),Integer.valueOf(sint.get(0)),sint.get(1)));
             PantallaPrincipal.TURNO.offer(turnos);
         }catch(IOException e){
             System.out.println(e.getMessage());
@@ -103,7 +106,6 @@ public class Controller_formulario implements Initializable {
         nombres.setText("");
         apellidos.setText("");
         genero.setText("");
-        sintomas.setText("");
         edad.setText("");
         mensaje.setText("");
     }

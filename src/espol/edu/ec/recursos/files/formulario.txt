@@ -1,4 +1,5 @@
 Christian,Gonzales,M,20,resfrio
 Pedro,Ramirez,M,12,fiebre
-Juancho,Piedad,Masculino,27,vomito
-Maria,Segarra,Femenino,15,vómito
+Juan,Aguilar,Masculino,25,resfrio
+Carmen,intriago,Femenino,52,resfrio
+Pedro,Infante,Masculino,55,resfrio

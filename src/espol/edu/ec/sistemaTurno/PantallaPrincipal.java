@@ -10,6 +10,7 @@ package espol.edu.ec.sistemaTurno;
 
 import espol.edu.ec.tda.Medico;
 import espol.edu.ec.tda.Puesto;
+import espol.edu.ec.tda.ReaderWriter;
 import espol.edu.ec.tda.Turno;
 import java.io.File;
 import java.io.IOException;
@@ -47,7 +48,8 @@ import javafx.stage.Stage;
  */
 public class PantallaPrincipal {
     private final BorderPane root;
-    private Label tiempo,mensaje;
+    private Label tiempo;
+    static Label mensaje;
     private ListIterator<String> it;
     private MediaView reproductor;
     @FXML
@@ -62,7 +64,7 @@ public class PantallaPrincipal {
     static Label mostrarPuesto;
     public PantallaPrincipal() throws InterruptedException {
         TURNO.addAll(Turno.asignarTurnos());
-        Puesto p=new Puesto(new Medico("0965487568","Julian","Perez","Medicina General","Masculino",50),"A01");
+        Puesto p=new Puesto(new Medico("0965487568","Julian","Perez","Medicina General","Masculino",50),"01");
         PUESTO_MEDICO.add(p);
         root=new BorderPane();
         root.setLeft(crearIzquierda());
@@ -84,9 +86,8 @@ public class PantallaPrincipal {
         botones.setAlignment(Pos.CENTER);
         botones.setPadding(new Insets(5,5,5,5));
         botones.setSpacing(20);
-        ListaCircularDoble<String> lista=new ListaCircularDoble<>();
-        lista.addLast("src/espol/edu/ec/recursos/files/broma1.mp4");
-        lista.addLast("src/espol/edu/ec/recursos/files/broma2.mp4");
+        ListaCircularDoble<String> lista=ReaderWriter.leerVideos();
+        
         //lista.addLast("src/espol/edu/ec/recursos/perdoname.mp4");
         it=lista.listIterator(0);
         reproductor=this.createMediaView(it);
@@ -137,12 +138,12 @@ public class PantallaPrincipal {
         mensaje=new Label("");
         botones.getChildren().addAll(crearPaciente,puestoMedico,atenderTurno,mensaje);
         abajo.getChildren().add(botones);
-        Label mensaje = new Label("Horario de atención de Lunes a Viernes de 10 a 18 Hs/ Sabado y Domingos"
+        Label mensajer= new Label("Horario de atención de Lunes a Viernes de 10 a 18 Hs/ Sabado y Domingos"
                 + "de 10 a 14 hs");
-        mensaje.setStyle("-fx-background-color:#66CDAA");
-        mensaje.setFont(new Font("Arial Black",12));
-        mensaje.setTextFill(Color.web("#FFFFFF"));
-        abajo.getChildren().add(mensaje);
+        mensajer.setStyle("-fx-background-color:#66CDAA");
+        mensajer.setFont(new Font("Arial Black",12));
+        mensajer.setTextFill(Color.web("#FFFFFF"));
+        abajo.getChildren().add(mensajer);
         crearPaciente.setOnAction((e)-> {
             try {
                 stageRegistrar = new Stage();
@@ -213,15 +214,10 @@ public class PantallaPrincipal {
         titulo2.setStyle("-fx-background-color:#87CEFA");
         
         mostrarTurno=new Label("");
-        if (!TURNO.isEmpty()){
-            mostrarTurno.setText(TURNO.peek().getNumero());
-        }else{
-            Platform.runLater(()->{
-                mensaje.setText("TurnosAtendidos");
-            });
-            
-            
-        }
+        if (!TURNO.isEmpty())
+            mostrarTurno.setText(TURNO.peek().getPaciente().getLetra()+String.valueOf(TURNO.peek().getNumero()));
+                
+ 
         
         
         Label nombreturno=new Label("Turno");
@@ -271,6 +267,7 @@ public class PantallaPrincipal {
     MediaView mediaView = new MediaView();
     initMediaPlayer(mediaView, direcciones);
     return mediaView;
+    
 }
 
 private void initMediaPlayer(final MediaView mediaView, final ListIterator<String>direcciones){
