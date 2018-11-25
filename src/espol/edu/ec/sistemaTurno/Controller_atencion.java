@@ -59,7 +59,7 @@ public class Controller_atencion implements Initializable {
             if (PantallaPrincipal.TURNO.isEmpty()){
                 PantallaPrincipal.mensaje.setText("TurnosAtendidos");
                 PantallaPrincipal.mostrarTurno.setText("---");
-                PantallaPrincipal.stagePaciente.close();
+                Pantallas.stagePaciente.close();
                 pantalla.pantallaPaciente();
                 
             }else{
@@ -71,7 +71,7 @@ public class Controller_atencion implements Initializable {
             mensajeError.setTextFill(Color.GREEN);
             PantallaPrincipal.PUESTO_MEDICO.offer(p);
             
-            PantallaPrincipal.stagePaciente.close();
+            Pantallas.stagePaciente.close();
             }
             
         }

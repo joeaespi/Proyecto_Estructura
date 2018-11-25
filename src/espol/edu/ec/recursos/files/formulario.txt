@@ -3,3 +3,6 @@ Pedro,Ramirez,M,12,fiebre
 Juan,Aguilar,Masculino,25,resfrio
 Carmen,intriago,Femenino,52,resfrio
 Pedro,Infante,Masculino,55,resfrio
+Carlos ,Garcia,Masculino,20,resfrio
+Juan,Caceres,Masculino,20,vómito
+Julian,Castro,Masculino,56,congestión nasal
