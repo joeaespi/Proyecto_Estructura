@@ -48,6 +48,7 @@ public class Controller_atencion implements Initializable {
     @FXML 
     public void atenderPaciente() throws InterruptedException{
         //turnos.poll();
+        Pantallas pantalla=new Pantallas();
         if (diagnostico.getText().isEmpty())
             mensajeError.setText("Debe dar un diagnostico");
         
@@ -59,9 +60,11 @@ public class Controller_atencion implements Initializable {
                 PantallaPrincipal.mensaje.setText("TurnosAtendidos");
                 PantallaPrincipal.mostrarTurno.setText("---");
                 PantallaPrincipal.stagePaciente.close();
+                pantalla.pantallaPaciente();
                 
             }else{
-                PantallaPrincipal.mostrarTurno.setText(String.valueOf(PantallaPrincipal.TURNO.peek().getPaciente().getLetra()+PantallaPrincipal.TURNO.peek().getNumero()));
+                PantallaPrincipal.mostrarTurno.setText(String.valueOf(PantallaPrincipal.TURNO.peek().
+                        getPaciente().getLetra()+PantallaPrincipal.TURNO.peek().getNumero()));
             PantallaPrincipal.mostrarPuesto.setText(PantallaPrincipal.PUESTO_MEDICO.peek().getNombrePuesto());
             Puesto p=PantallaPrincipal.PUESTO_MEDICO.poll();
            // 

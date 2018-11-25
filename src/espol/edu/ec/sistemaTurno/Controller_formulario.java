@@ -73,12 +73,15 @@ public class Controller_formulario implements Initializable {
         try{
             File file = new File("src/espol/edu/ec/recursos/files/formulario.txt");
             output = new BufferedWriter(new FileWriter(file.getAbsolutePath(),true));
-            output.write(nombres.getText()+","+apellidos.getText()+","+genero.getText()+","+edad.getText()+","+(String)combSintomas.getValue());
+            output.write(nombres.getText()+","+apellidos.getText()+","+genero.getText()+","+
+                    edad.getText()+","+(String)combSintomas.getValue());
             output.newLine();
             mensaje.setTextFill(Color.BLACK);
             mensaje.setText("Registrado...");
             List<String> sint=leerSintomas(String.valueOf(combSintomas.getValue()));
-            turnos = new Turno(String.valueOf(++num), new Paciente(nombres.getText(),apellidos.getText(), genero.getText(),Integer.valueOf(edad.getText()),(String)combSintomas.getValue(),Integer.valueOf(sint.get(0)),sint.get(1)));
+            turnos = new Turno(String.valueOf(++num), new Paciente(nombres.getText(),apellidos.getText(), 
+                    genero.getText(),Integer.valueOf(edad.getText()),(String)combSintomas.getValue(),
+                    Integer.valueOf(sint.get(0)),sint.get(1)));
             PantallaPrincipal.TURNO.offer(turnos);
         }catch(IOException e){
             System.out.println(e.getMessage());

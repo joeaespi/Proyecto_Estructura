@@ -26,13 +26,7 @@ public class Puesto {
         this.cedula=medico.getCedula();
         this.nombrePuesto=nombrePuesto;
     }
-//    public Puesto agregarPuesto(Medico medico){
-//        
-//    }
-    /*public Puesto asginarPuesto(Medico medico,String nombrePuesto){
-        Puesto puesto = new Puesto(medico);
-        return puesto;
-    }*/
+
 
     public String getNombrePuesto() {
         return nombrePuesto;

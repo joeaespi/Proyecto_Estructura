@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package espol.edu.ec.sistemaTurno;
+package espol.edu.ec.ListaCircularDoble;
 
 import espol.edu.ec.ListaCircularDoble.List;
 import espol.edu.ec.ListaCircularDoble.Node;

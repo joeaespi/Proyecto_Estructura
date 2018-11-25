@@ -5,7 +5,7 @@
  */
 package espol.edu.ec.tda;
 
-import espol.edu.ec.sistemaTurno.ListaCircularDoble;
+import espol.edu.ec.ListaCircularDoble.ListaCircularDoble;
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
@@ -14,7 +14,6 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javafx.collections.ObservableList;
 
 /**
  *

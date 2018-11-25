@@ -8,6 +8,7 @@ package espol.edu.ec.sistemaTurno;
 
 
 
+import espol.edu.ec.ListaCircularDoble.ListaCircularDoble;
 import espol.edu.ec.tda.Medico;
 import espol.edu.ec.tda.Puesto;
 import espol.edu.ec.tda.ReaderWriter;
@@ -52,6 +53,7 @@ public class PantallaPrincipal {
     static Label mensaje;
     private ListIterator<String> it;
     private MediaView reproductor;
+    private  Pantallas pantallas=new Pantallas();
     @FXML
     private AnchorPane rootPane;
     @FXML
@@ -145,7 +147,8 @@ public class PantallaPrincipal {
         mensajer.setTextFill(Color.web("#FFFFFF"));
         abajo.getChildren().add(mensajer);
         crearPaciente.setOnAction((e)-> {
-            try {
+            pantallas.pantallaPaciente();
+           /* try {
                 stageRegistrar = new Stage();
                 stageRegistrar.setTitle("Registro Pacientes");
                 rootPaciente =new FXMLLoader(this.getClass().getResource("viewFormulario.fxml"));
@@ -153,10 +156,11 @@ public class PantallaPrincipal {
                 stageRegistrar.show();
             } catch (IOException ex) {
                 Logger.getLogger(PantallaPrincipal.class.getName()).log(Level.SEVERE, null, ex);
-            }
+            }*/
 });
         puestoMedico.setOnAction((e)->{
-            try {
+            pantallas.pantallaMedico();
+            /*try {
                 stagePuesto = new Stage();
                 stagePuesto.setTitle("Registrar Puesto");
                 rootPuesto=new FXMLLoader(this.getClass().getResource("viewPuesto.fxml"));
@@ -164,10 +168,11 @@ public class PantallaPrincipal {
                 stagePuesto.show();
             } catch (IOException ex) {
                 Logger.getLogger(PantallaPrincipal.class.getName()).log(Level.SEVERE, null, ex);
-            }
+            }*/
         });
         atenderTurno.setOnAction((e)->{
-            try {
+            pantallas.pantallaAtencion();
+            /*try {
                 stagePaciente=new Stage();
                 stagePaciente.setTitle("Atencion");
                 rootAtencion =new FXMLLoader(this.getClass().getResource("viewAtencion.fxml"));
@@ -175,7 +180,7 @@ public class PantallaPrincipal {
                 stagePaciente.show();
             } catch (IOException ex) {
                 Logger.getLogger(PantallaPrincipal.class.getName()).log(Level.SEVERE, null, ex);
-            }
+            }*/
         });
         return abajo; 
     }

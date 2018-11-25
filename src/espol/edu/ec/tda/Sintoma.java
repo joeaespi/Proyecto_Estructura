@@ -13,6 +13,4 @@ public class Sintoma {
     private String nombreSintoma;
     private int nivelPriotidad;
     
-    
-    
 }

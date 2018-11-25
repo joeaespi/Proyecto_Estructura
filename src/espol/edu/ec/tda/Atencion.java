@@ -42,9 +42,5 @@ public enum Atencion {
     public String getTipo(){
         return tipo;
     }
-//    
-//    @Override
-//   // public String toString() {
-//        return name;
-//    }
+
 }
