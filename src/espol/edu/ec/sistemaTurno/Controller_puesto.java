@@ -7,10 +7,7 @@ package espol.edu.ec.sistemaTurno;
 
 import espol.edu.ec.tda.Medico;
 import espol.edu.ec.tda.Puesto;
-import static java.lang.Thread.sleep;
 import java.net.URL;
-import java.util.LinkedList;
-import java.util.Queue;
 import java.util.ResourceBundle;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -48,6 +45,7 @@ public class Controller_puesto implements Initializable {
     }
     @FXML
     public void registrarPuesto() throws InterruptedException{
+        //En esta seccion se pueden crear nuevos puestos
        if(cedula.getText().isEmpty()||nombre.getText().isEmpty() || apellido.getText().isEmpty()|| profesion.getText().isEmpty()|| namePuesto.getText().isEmpty()){
             mensaje.setTextFill(Color.RED);
             mensaje.setText("Existen campos en blanco!!!");

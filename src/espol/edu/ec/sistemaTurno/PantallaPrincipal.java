@@ -14,7 +14,6 @@ import espol.edu.ec.tda.Puesto;
 import espol.edu.ec.tda.ReaderWriter;
 import espol.edu.ec.tda.Turno;
 import java.io.File;
-import java.io.IOException;
 import java.time.LocalDateTime;
 import java.util.LinkedList;
 
@@ -27,8 +26,6 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.AnchorPane;
@@ -90,7 +87,6 @@ public class PantallaPrincipal {
         botones.setSpacing(20);
         ListaCircularDoble<String> lista=ReaderWriter.leerVideos();
         
-        //lista.addLast("src/espol/edu/ec/recursos/perdoname.mp4");
         it=lista.listIterator(0);
         reproductor=this.createMediaView(it);
         reproductor.setFitHeight(300);
@@ -100,13 +96,10 @@ public class PantallaPrincipal {
             reproductor.getMediaPlayer().stop();
             File f=new File(it.next());
             MediaPlayer sig=new MediaPlayer(new Media(f.toURI().toString()));
-            Platform.runLater(()->{
-                reproductor.setMediaPlayer(sig);
-                sig.play();
             
-            });
-            
-            //reproductor=this.createMediaView(it);
+            reproductor.setMediaPlayer(sig);
+            sig.play();
+           
         });
         
         Button anterior=new Button("Anterior");
@@ -160,27 +153,11 @@ public class PantallaPrincipal {
 });
         puestoMedico.setOnAction((e)->{
             pantallas.pantallaMedico();
-            /*try {
-                stagePuesto = new Stage();
-                stagePuesto.setTitle("Registrar Puesto");
-                rootPuesto=new FXMLLoader(this.getClass().getResource("viewPuesto.fxml"));
-                stagePuesto.setScene(new Scene(rootPuesto.load()));
-                stagePuesto.show();
-            } catch (IOException ex) {
-                Logger.getLogger(PantallaPrincipal.class.getName()).log(Level.SEVERE, null, ex);
-            }*/
+          
         });
         atenderTurno.setOnAction((e)->{
             pantallas.pantallaAtencion();
-            /*try {
-                stagePaciente=new Stage();
-                stagePaciente.setTitle("Atencion");
-                rootAtencion =new FXMLLoader(this.getClass().getResource("viewAtencion.fxml"));
-                stagePaciente.setScene(new Scene(rootAtencion.load()));
-                stagePaciente.show();
-            } catch (IOException ex) {
-                Logger.getLogger(PantallaPrincipal.class.getName()).log(Level.SEVERE, null, ex);
-            }*/
+            
         });
         return abajo; 
     }
@@ -190,7 +167,6 @@ public class PantallaPrincipal {
         HBox arriba=new HBox();
         arriba.setPadding(new Insets(5,5,5,5));
         arriba.setAlignment(Pos.CENTER_RIGHT);
-        //arriba.setPadding(new Insets(10,10,10,10));
         tiempo=new Label("");
         tiempo.setFont(new Font("Arial Black",25));
         arriba.getChildren().add(tiempo);
@@ -220,22 +196,17 @@ public class PantallaPrincipal {
         
         mostrarTurno=new Label("");
         if (!TURNO.isEmpty())
-            mostrarTurno.setText(TURNO.peek().getPaciente().getLetra()+String.valueOf(TURNO.peek().getNumero()));
+            mostrarTurno.setText(TURNO.peek().getPaciente().getLetra()+
+                    String.valueOf(TURNO.peek().getNumero()));
                 
- 
-        
-        
+
         Label nombreturno=new Label("Turno");
         nombreturno.setFont(new Font("Arial Black",20));
         titulo1.getChildren().add(nombreturno);
         titulo2.getChildren().add(mostrarTurno);
-        
-        
-        
+
         turno.getChildren().addAll(titulo1,titulo2);
-        
-        
-        
+
         VBox puesto=new VBox();
         puesto.setSpacing(5);
         

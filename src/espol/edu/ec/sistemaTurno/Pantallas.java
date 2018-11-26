@@ -5,11 +5,7 @@
  */
 package espol.edu.ec.sistemaTurno;
 
-import espol.edu.ec.tda.Puesto;
-import espol.edu.ec.tda.Turno;
 import java.io.IOException;
-import java.util.LinkedList;
-import java.util.PriorityQueue;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javafx.fxml.FXML;
